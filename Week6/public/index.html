@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+
+    <!--Let browser know the website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <style>
+    .nav-wrapper {
+      background-color: #90caf9 !important; /* Set background color to blue lighten-3 */
+    }
+
+    .nav-wrapper a,
+    .nav-wrapper ul li a,
+    .nav-wrapper .brand-logo {
+      color: black !important; /* Set text color to black */
+    }
+
+    .nav-wrapper .btn {
+      background-color: #42a5f5 !important; /* Set Login button background to blue darken-4 */
+    }
+
+    body {
+      background-color: #ffffff !important; /* Set background color to white */
+    }
+
+    /* Style for each section */
+    .section {
+      display: none;
+    }
+
+    /* Make the content sections visible when active */
+    .active-section {
+      display: block;
+    }
+  </style>
+  <body>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Srihitha Event Management</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="#home" onclick="showSection('home')">Home</a></li>
+          <li>
+            <a class="dropdown-trigger" href="#!" data-target="dropdown2">Events<i class="material-icons right">arrow_drop_down</i></a>
+          </li>
+          <li><a href="#about" onclick="showSection('about')">About</a></li>
+          <li><a href="#prices" onclick="showSection('prices')">Prices</a></li>
+          <li><a href="#contact" onclick="showSection('contact')">Contact</a></li>
+          <li><a class="waves-effect waves-light btn" onclick="redirectToLogin()">Login</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Dropdown Structure -->
+    <ul id="dropdown2" class="dropdown-content">
+      <li><a href="#!">Weddings</a></li>
+      <li><a href="#!">Birthdays</a></li>
+      <li><a href="#!">Gender-Reveal</a></li>
+    </ul>
+
+    <!-- Home Section -->
+    <div class="section active-section" id="home">
+      <h1 class="center-align">Welcome to Srihitha Event Management</h1>
+      <p class="center-align flow-text">Your one-stop solution to manage events seamlessly.</p>
+      <div class="center-align">
+        <img class="responsive-img" src="images/event3.jpeg" alt="Event Image" style="width: 300px; height: auto;">
+        <img class="responsive-img" src="images/event5.jpeg" alt="Event Image" style="width: 300px; height: auto;">
+        <img class="responsive-img" src="images/event6.jpeg" alt="Event Image" style="width: 300px; height: 200px;">
+        <img class="responsive-img" src="images/event01.jpeg" alt="Event Image" style="width: 300px; height: auto;">
+        <img class="responsive-img" src="images/event1.jpeg" alt="Event Image" style="width: 300px; height: auto;">
+        <img class="responsive-img" src="images/event2.jpeg" alt="Event Image" style="width: 300px; height: auto;">
+      </div>
+    </div>
+
+    <!-- About Section -->
+    <div id="about" class="section">
+      <h2 class="center-align">Our Services</h2>
+      <p class="center-align">We provide various services to manage events, including event planning, decoration, catering, photography, and more.</p>
+    </div>
+
+    <!-- Prices Section -->
+    <div id="prices" class="section">
+      <h2 class="center-align">Event Pricing</h2>
+      <p class="center-align">Here you can find the pricing details for different events. We offer custom pricing based on your event type, size, and requirements.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Wedding</td>
+            <td>$2000</td>
+          </tr>
+          <tr>
+            <td>Birthday</td>
+            <td>$500</td>
+          </tr>
+          <tr>
+            <td>Gender-Reveal</td>
+            <td>$800</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="section">
+      <h2 class="center-align">Contact Us</h2>
+      <p class="center-align">For any inquiries, please reach out to us via the following channels:</p>
+      <div class="center-align">
+        <ul class="center-align" style="list-style: none; padding: 0;">
+          <li>
+            <i class="small material-icons">contact_phone</i>
+            <span>Phone: +123456789</span>
+          </li>
+          <li>
+            <i class="small material-icons">contact_mail</i>
+            <span>Email: info@srihithaevents.com</span>
+          </li>
+          <li>
+            <i class="small material-icons">share</i>
+            <span>
+              Social Media:
+              <a href="https://facebook.com">Facebook</a>, 
+              <a href="https://twitter.com">Twitter</a>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+      <div class="modal-content">
+        <h4>Login</h4>
+        <form>
+          <div class="input-field">
+            <input id="email" type="email" class="validate" />
+            <label for="email">Email</label>
+          </div>
+          <div class="input-field">
+            <input id="password" type="password" class="validate" />
+            <label for="password">Password</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="modal-close waves-effect waves-green btn-flat">Submit</a>
+      </div>
+    </div>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="js/caro.js"></script>
+    <script src="js/modal.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var elems = document.querySelectorAll(".dropdown-trigger");
+        var instances = M.Dropdown.init(elems);
+      });
+
+      function showSection(sectionId) {
+        // Hide all sections
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => section.classList.remove("active-section"));
+
+        // Show the selected section
+        const selectedSection = document.getElementById(sectionId);
+        if (selectedSection) {
+          selectedSection.classList.add("active-section");
+
+          // Smooth scroll to the Home section
+          if (sectionId === "home") {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          } else {
+            selectedSection.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+      }
+
+      // Function to redirect to login page or open modal
+      function redirectToLogin() {
+        const modal = document.querySelector("#login-modal");
+        const instance = M.Modal.init(modal);
+        instance.open();
+      }
+    </script>
+  </body>
+</html>
