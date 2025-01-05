@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Google Icon Font -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Materialize CSS -->
+    <link type="text/css" rel="stylesheet" href="/css/materialize.min.css" media="screen,projection" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Srihitha Event Management</title>
+  </head>
+  <style>
+    .nav-wrapper {
+      background-color: #90caf9 !important;
+    }
+    .nav-wrapper a, .nav-wrapper ul li a, .nav-wrapper .brand-logo {
+      color: black !important;
+    }
+    .nav-wrapper .btn {
+      background-color: #42a5f5 !important;
+    }
+    body {
+      background-color: #ffffff !important;
+    }
+    .section {
+      display: none;
+    }
+    .active-section {
+      display: block;
+    }
+    #chat-container {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 300px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      background: #f9f9f9;
+    }
+    #chat-box {
+      height: 200px;
+      overflow-y: scroll;
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+    }
+  </style>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Srihitha Event Management</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="#home" onclick="showSection('home')">Home</a></li>
+          <li><a href="#about" onclick="showSection('about')">About</a></li>
+          <li><a href="#prices" onclick="showSection('prices')">Prices</a></li>
+          <li><a href="#contact" onclick="showSection('contact')">Contact</a></li>
+          <li><a class="waves-effect waves-light btn" onclick="redirectToLogin()">Login</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Sections -->
+    <div id="home" class="section active-section">
+      <h1 class="center-align">Welcome to Srihitha Event Management</h1>
+      <p class="center-align">Your one-stop solution to manage events seamlessly.</p>
+      <div class="center-align">
+        <img src="images/event3.jpeg" alt="Event Image" style="width: 300px;">
+        <img src="images/event5.jpeg" alt="Event Image" style="width: 300px;">
+      </div>
+    </div>
+    <div id="about" class="section">
+      <h2>About Us</h2>
+      <p>We provide event planning, decoration, catering, and photography.</p>
+    </div>
+
+    <div id="contact" class="section">
+      <h2>Contact Us</h2>
+      <p>Phone: +123456789 | Email: info@srihithaevents.com</p>
+    </div>
+
+    <!-- Chat Section -->
+    <div id="chat-container">
+      <h4>Live Chat</h4>
+      <div id="chat-box"></div>
+      <input type="text" id="chat-input" placeholder="Type your message..." style="width: 80%;" />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <!-- Socket.IO -->
+    <script src="https://cdn.socket.io/4.0.1/socket.io.js"></script>
+    <script>
+      const socket = io();
+
+      const chatBox = document.getElementById('chat-box');
+      const chatInput = document.getElementById('chat-input');
+
+      socket.on('chat message', (msg) => {
+        const msgElement = document.createElement('div');
+        msgElement.textContent = msg;
+        chatBox.appendChild(msgElement);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      });
+
+      function sendMessage() {
+        const message = chatInput.value;
+        if (message.trim()) {
+          socket.emit('chat message', message);
+          chatInput.value = '';
+        }
+      }
+
+      function showSection(sectionId) {
+        document.querySelectorAll('.section').forEach(section => section.classList.remove('active-section'));
+        document.getElementById(sectionId).classList.add('active-section');
+      }
+
+      function redirectToLogin() {
+        alert('Redirecting to login...');
+      }
+    </script>
+  </body>
+</html>
